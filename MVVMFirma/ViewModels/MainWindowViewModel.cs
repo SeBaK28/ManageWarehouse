@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
+using MVVMFirma.Views;
 
 namespace MVVMFirma.ViewModels
 {
@@ -37,13 +38,52 @@ namespace MVVMFirma.ViewModels
             {
                 new CommandViewModel(
                     "",
-                    "Towary",
-                    new BaseCommand(() => this.CreateView<WszystkieTowaryViewModel>())),
-
+                    "Produkty",
+                    new BaseCommand(() => this.CreateView<GetAllProductsViewModel>())),
                 new CommandViewModel(
                     "",
-                    "Towar",
-                    new BaseCommand(() => this.CreateView<NowyTowarViewModel>()))
+                    "Lista Magazynow",
+                    new BaseCommand(() => this.CreateView<GetAllWarehousesViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Lokalizacje",
+                    new BaseCommand(() => this.CreateView<GetAllLocationsViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Magazyn",
+                    new BaseCommand(() => this.CreateView<GetAllStocksViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Dostawcy",
+                    new BaseCommand(() => this.CreateView<GetAllSuppliersViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Lista Klientow",
+                    new BaseCommand(() => this.CreateView<GetAllCustomersViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Zamowienia",
+                    new BaseCommand(() => this.CreateView<GetAllOrdersViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Elementy Zamowienia",
+                    new BaseCommand(() => this.CreateView<GetAllPurchaseOrderItemsViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Wyprzedaz",
+                    new BaseCommand(() => this.CreateView<GetAllSalesOrdersViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Elementy Wyprzedazy",
+                    new BaseCommand(() => this.CreateView<GetAllSalesOrderItemsViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Paragony",
+                    new BaseCommand(() => this.CreateView<GetAllReciptsViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Problemy",
+                    new BaseCommand(() => this.CreateView<GetAllOrdersIssuesViewModel>())),
             };
         }
         #endregion

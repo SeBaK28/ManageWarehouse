@@ -1,0 +1,24 @@
+﻿<local:WszystkieViewBase x:Class="MVVMFirma.Views.GetAllSalesOrderItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" Name="SalesOrderItemsGrid" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding SalesOrderItemID}"/>
+                <DataGridTextColumn Header="Zamówienie Id" Binding="{Binding SalesOrderID}"/>
+                <DataGridTextColumn Header="Produkt Id" Binding="{Binding ProductID}"/>
+                <DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Cena jednostkowa" Binding="{Binding UnitPrice}"/>
+                <DataGridTextColumn Header="Łączna cena" Binding="{Binding TotalPrice}"/>
+                <DataGridTextColumn Header="Utworzono" Binding="{Binding CreatedAt}"/>
+                <DataGridTextColumn Header="Edytowano" Binding="{Binding UpdatedAt}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</local:WszystkieViewBase>

@@ -3,11 +3,41 @@
                     xmlns:vm="clr-namespace:MVVMFirma.ViewModels"
                     xmlns:vw="clr-namespace:MVVMFirma.Views"
                     >
-    <DataTemplate DataType="{x:Type vm:WszystkieTowaryViewModel}">
-        <vw:WszystkieTowaryView/>
+    <DataTemplate DataType="{x:Type vm:GetAllProductsViewModel}">
+        <vw:GetAllProductsView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
-        <vw:NowyTowarView/>
+    <DataTemplate DataType="{x:Type vm:GetAllCustomersViewModel}">
+        <vw:GetAllCustomersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllLocationsViewModel}">
+        <vw:GetAllLocationsView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllOrdersIssuesViewModel}">
+        <vw:GetAllOrdersIssuesView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllOrdersViewModel}">
+        <vw:GetAllOrdersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllPurchaseOrderItemsViewModel}">
+        <vw:GetAllPurchaseOrderItemsView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllReciptsViewModel}">
+        <vw:GetAllReceiptsView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllSalesOrderItemsViewModel}">
+        <vw:GetAllSalesOrderItemsView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllSalesOrdersViewModel}">
+        <vw:GetAllSalesOrdersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllStocksViewModel}">
+        <vw:GetAllStocksView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllSuppliersViewModel}">
+        <vw:GetAllSuppliersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllWarehousesViewModel}">
+        <vw:GetAllWarehousesView/>
     </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">

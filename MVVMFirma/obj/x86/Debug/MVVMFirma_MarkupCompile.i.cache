@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\App.xaml
-42057856104
-
-151569475952
-15595612300
-Views\MainWindow.xaml;Views\MainWindowResources.xaml;Views\NowyTowarView.xaml;Views\WszystkieTowaryView.xaml;
+15-386613158
+2-549614313
+55575919545
+181160815892
+Themes\Generic.xaml;Views\GetAllCustomersView.xaml;Views\GetAllLocationsView.xaml;Views\GetAllOrdersIssuesView.xaml;Views\GetAllOrdersView.xaml;Views\GetAllProductsView.xaml;Views\GetAllPurchaseOrderItemsView.xaml;Views\GetAllReceiptsView.xaml;Views\GetAllSalesOrderItemsView.xaml;Views\GetAllSalesOrdersView.xaml;Views\GetAllStocksView.xaml;Views\GetAllSuppliersView.xaml;Views\GetAllWarehousesView.xaml;Views\MainWindow.xaml;Views\MainWindowResources.xaml;
 
 True
 

@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WarehouseDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrders_Customers" FromRole="Customers" ToRole="SalesOrders" />
+  </EntityType>
+  <EntityType Name="GoodsIssues">
+    <Key>
+      <PropertyRef Name="GoodsIssueID" />
+    </Key>
+    <Property Name="GoodsIssueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesOrderID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="IssueDate" Type="DateTime" Precision="0" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_GoodsIssues_SalesOrders" FromRole="GoodsIssues" ToRole="SalesOrders" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.FK_GoodsIssues_Warehouses" FromRole="GoodsIssues" ToRole="Warehouses" />
+  </EntityType>
+  <EntityType Name="GoodsReceipts">
+    <Key>
+      <PropertyRef Name="GoodsReceiptID" />
+    </Key>
+    <Property Name="GoodsReceiptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="ReceiptDate" Type="DateTime" Precision="0" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_GoodsReceipts_PurchaseOrders" FromRole="GoodsReceipts" ToRole="PurchaseOrders" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.FK_GoodsReceipts_Warehouses" FromRole="GoodsReceipts" ToRole="Warehouses" />
+  </EntityType>
+  <EntityType Name="InventoryCountItems">
+    <Key>
+      <PropertyRef Name="InventoryCountItemID" />
+    </Key>
+    <Property Name="InventoryCountItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InventoryCountID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="SystemQuantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CountedQuantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Difference" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="InventoryCounts" Relationship="Self.FK_InventoryCountItems_InventoryCounts" FromRole="InventoryCountItems" ToRole="InventoryCounts" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_InventoryCountItems_Products" FromRole="InventoryCountItems" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="InventoryCounts">
+    <Key>
+      <PropertyRef Name="InventoryCountID" />
+    </Key>
+    <Property Name="InventoryCountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="CountDate" Type="DateTime" Precision="0" />
+    <Property Name="ResponsiblePerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="InventoryCountItems" Relationship="Self.FK_InventoryCountItems_InventoryCounts" FromRole="InventoryCounts" ToRole="InventoryCountItems" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.FK_InventoryCounts_Warehouses" FromRole="InventoryCounts" ToRole="Warehouses" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.FK_Locations_Warehouses" FromRole="Locations" ToRole="Warehouses" />
+    <NavigationProperty Name="Movements" Relationship="Self.FK_Movements_FromLocation" FromRole="Locations" ToRole="Movements" />
+    <NavigationProperty Name="Movements1" Relationship="Self.FK_Movements_ToLocation" FromRole="Locations" ToRole="Movements" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Locations" FromRole="Locations" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Movements">
+    <Key>
+      <PropertyRef Name="MovementID" />
+    </Key>
+    <Property Name="MovementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="FromLocationID" Type="Int32" />
+    <Property Name="ToLocationID" Type="Int32" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MovementType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentID" Type="Int32" />
+    <Property Name="MovementDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Locations" Relationship="Self.FK_Movements_FromLocation" FromRole="Movements" ToRole="Locations" />
+    <NavigationProperty Name="Locations1" Relationship="Self.FK_Movements_ToLocation" FromRole="Movements" ToRole="Locations" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Movements_Products" FromRole="Movements" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="InventoryCountItems" Relationship="Self.FK_InventoryCountItems_Products" FromRole="Products" ToRole="InventoryCountItems" />
+    <NavigationProperty Name="Movements" Relationship="Self.FK_Movements_Products" FromRole="Products" ToRole="Movements" />
+    <NavigationProperty Name="PurchaseOrderItems" Relationship="Self.FK_PurchaseOrderItems_Products" FromRole="Products" ToRole="PurchaseOrderItems" />
+    <NavigationProperty Name="SalesOrderItems" Relationship="Self.FK_SalesOrderItems_Products" FromRole="Products" ToRole="SalesOrderItems" />
+    <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Products" FromRole="Products" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="PurchaseOrderItems">
+    <Key>
+      <PropertyRef Name="PurchaseOrderItemID" />
+    </Key>
+    <Property Name="PurchaseOrderItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_PurchaseOrderItems_Products" FromRole="PurchaseOrderItems" ToRole="Products" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrderItems_PurchaseOrders" FromRole="PurchaseOrderItems" ToRole="PurchaseOrders" />
+  </EntityType>
+  <EntityType Name="PurchaseOrders">
+    <Key>
+      <PropertyRef Name="PurchaseOrderID" />
+    </Key>
+    <Property Name="PurchaseOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GoodsReceipts" Relationship="Self.FK_GoodsReceipts_PurchaseOrders" FromRole="PurchaseOrders" ToRole="GoodsReceipts" />
+    <NavigationProperty Name="PurchaseOrderItems" Relationship="Self.FK_PurchaseOrderItems_PurchaseOrders" FromRole="PurchaseOrders" ToRole="PurchaseOrderItems" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_PurchaseOrders_Suppliers" FromRole="PurchaseOrders" ToRole="Suppliers" />
+  </EntityType>
+  <EntityType Name="SalesOrderItems">
+    <Key>
+      <PropertyRef Name="SalesOrderItemID" />
+    </Key>
+    <Property Name="SalesOrderItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesOrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesOrderItems_Products" FromRole="SalesOrderItems" ToRole="Products" />
+    <NavigationProperty Name="SalesOrders" Relationship="Self.FK_SalesOrderItems_SalesOrders" FromRole="SalesOrderItems" ToRole="SalesOrders" />
+  </EntityType>
+  <EntityType Name="SalesOrders">
+    <Key>
+      <PropertyRef Name="SalesOrderID" />
+    </Key>
+    <Property Name="SalesOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_SalesOrders_Customers" FromRole="SalesOrders" ToRole="Customers" />
+    <NavigationProperty Name="GoodsIssues" Relationship="Self.FK_GoodsIssues_SalesOrders" FromRole="SalesOrders" ToRole="GoodsIssues" />
+    <NavigationProperty Name="SalesOrderItems" Relationship="Self.FK_SalesOrderItems_SalesOrders" FromRole="SalesOrders" ToRole="SalesOrderItems" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="LocationID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Reserved" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Locations" Relationship="Self.FK_Stock_Locations" FromRole="Stock" ToRole="Locations" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Stock_Products" FromRole="Stock" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Suppliers">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrders_Suppliers" FromRole="Suppliers" ToRole="PurchaseOrders" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Warehouses">
+    <Key>
+      <PropertyRef Name="WarehouseID" />
+    </Key>
+    <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Manager" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GoodsIssues" Relationship="Self.FK_GoodsIssues_Warehouses" FromRole="Warehouses" ToRole="GoodsIssues" />
+    <NavigationProperty Name="GoodsReceipts" Relationship="Self.FK_GoodsReceipts_Warehouses" FromRole="Warehouses" ToRole="GoodsReceipts" />
+    <NavigationProperty Name="InventoryCounts" Relationship="Self.FK_InventoryCounts_Warehouses" FromRole="Warehouses" ToRole="InventoryCounts" />
+    <NavigationProperty Name="Locations" Relationship="Self.FK_Locations_Warehouses" FromRole="Warehouses" ToRole="Locations" />
+  </EntityType>
+  <Association Name="FK_SalesOrders_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="SalesOrders" Type="Self.SalesOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="SalesOrders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsIssues_SalesOrders">
+    <End Role="SalesOrders" Type="Self.SalesOrders" Multiplicity="1" />
+    <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrders">
+        <PropertyRef Name="SalesOrderID" />
+      </Principal>
+      <Dependent Role="GoodsIssues">
+        <PropertyRef Name="SalesOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsIssues_Warehouses">
+    <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+    <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouses">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="GoodsIssues">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsReceipts_PurchaseOrders">
+    <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="1" />
+    <End Role="GoodsReceipts" Type="Self.GoodsReceipts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrders">
+        <PropertyRef Name="PurchaseOrderID" />
+      </Principal>
+      <Dependent Role="GoodsReceipts">
+        <PropertyRef Name="PurchaseOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GoodsReceipts_Warehouses">
+    <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+    <End Role="GoodsReceipts" Type="Self.GoodsReceipts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouses">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="GoodsReceipts">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryCountItems_InventoryCounts">
+    <End Role="InventoryCounts" Type="Self.InventoryCounts" Multiplicity="1" />
+    <End Role="InventoryCountItems" Type="Self.InventoryCountItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventoryCounts">
+        <PropertyRef Name="InventoryCountID" />
+      </Principal>
+      <Dependent Role="InventoryCountItems">
+        <PropertyRef Name="InventoryCountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryCountItems_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="InventoryCountItems" Type="Self.InventoryCountItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="InventoryCountItems">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryCounts_Warehouses">
+    <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+    <End Role="InventoryCounts" Type="Self.InventoryCounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouses">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="InventoryCounts">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locations_Warehouses">
+    <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+    <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouses">
+        <PropertyRef Name="WarehouseID" />
+      </Principal>
+      <Dependent Role="Locations">
+        <PropertyRef Name="WarehouseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movements_FromLocation">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+    <End Role="Movements" Type="Self.Movements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="FromLocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movements_ToLocation">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+    <End Role="Movements" Type="Self.Movements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="ToLocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Locations">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movements_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Movements" Type="Self.Movements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Movements">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderItems_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="PurchaseOrderItems" Type="Self.PurchaseOrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="PurchaseOrderItems">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrderItems_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="SalesOrderItems" Type="Self.SalesOrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="SalesOrderItems">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderItems_PurchaseOrders">
+    <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="1" />
+    <End Role="PurchaseOrderItems" Type="Self.PurchaseOrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrders">
+        <PropertyRef Name="PurchaseOrderID" />
+      </Principal>
+      <Dependent Role="PurchaseOrderItems">
+        <PropertyRef Name="PurchaseOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrders_Suppliers">
+    <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+    <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suppliers">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="PurchaseOrders">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesOrderItems_SalesOrders">
+    <End Role="SalesOrders" Type="Self.SalesOrders" Multiplicity="1" />
+    <End Role="SalesOrderItems" Type="Self.SalesOrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesOrders">
+        <PropertyRef Name="SalesOrderID" />
+      </Principal>
+      <Dependent Role="SalesOrderItems">
+        <PropertyRef Name="SalesOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WarehouseDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
+    <EntitySet Name="GoodsIssues" EntityType="Self.GoodsIssues" />
+    <EntitySet Name="GoodsReceipts" EntityType="Self.GoodsReceipts" />
+    <EntitySet Name="InventoryCountItems" EntityType="Self.InventoryCountItems" />
+    <EntitySet Name="InventoryCounts" EntityType="Self.InventoryCounts" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" />
+    <EntitySet Name="Movements" EntityType="Self.Movements" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="PurchaseOrderItems" EntityType="Self.PurchaseOrderItems" />
+    <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrders" />
+    <EntitySet Name="SalesOrderItems" EntityType="Self.SalesOrderItems" />
+    <EntitySet Name="SalesOrders" EntityType="Self.SalesOrders" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" />
+    <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Warehouses" EntityType="Self.Warehouses" />
+    <AssociationSet Name="FK_SalesOrders_Customers" Association="Self.FK_SalesOrders_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="SalesOrders" EntitySet="SalesOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsIssues_SalesOrders" Association="Self.FK_GoodsIssues_SalesOrders">
+      <End Role="SalesOrders" EntitySet="SalesOrders" />
+      <End Role="GoodsIssues" EntitySet="GoodsIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsIssues_Warehouses" Association="Self.FK_GoodsIssues_Warehouses">
+      <End Role="Warehouses" EntitySet="Warehouses" />
+      <End Role="GoodsIssues" EntitySet="GoodsIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsReceipts_PurchaseOrders" Association="Self.FK_GoodsReceipts_PurchaseOrders">
+      <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+      <End Role="GoodsReceipts" EntitySet="GoodsReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GoodsReceipts_Warehouses" Association="Self.FK_GoodsReceipts_Warehouses">
+      <End Role="Warehouses" EntitySet="Warehouses" />
+      <End Role="GoodsReceipts" EntitySet="GoodsReceipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryCountItems_InventoryCounts" Association="Self.FK_InventoryCountItems_InventoryCounts">
+      <End Role="InventoryCounts" EntitySet="InventoryCounts" />
+      <End Role="InventoryCountItems" EntitySet="InventoryCountItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryCountItems_Products" Association="Self.FK_InventoryCountItems_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="InventoryCountItems" EntitySet="InventoryCountItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryCounts_Warehouses" Association="Self.FK_InventoryCounts_Warehouses">
+      <End Role="Warehouses" EntitySet="Warehouses" />
+      <End Role="InventoryCounts" EntitySet="InventoryCounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_Warehouses" Association="Self.FK_Locations_Warehouses">
+      <End Role="Warehouses" EntitySet="Warehouses" />
+      <End Role="Locations" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movements_FromLocation" Association="Self.FK_Movements_FromLocation">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movements_ToLocation" Association="Self.FK_Movements_ToLocation">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Locations" Association="Self.FK_Stock_Locations">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movements_Products" Association="Self.FK_Movements_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Movements" EntitySet="Movements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItems_Products" Association="Self.FK_PurchaseOrderItems_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrderItems_Products" Association="Self.FK_SalesOrderItems_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SalesOrderItems" EntitySet="SalesOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Products" Association="Self.FK_Stock_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItems_PurchaseOrders" Association="Self.FK_PurchaseOrderItems_PurchaseOrders">
+      <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+      <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrders_Suppliers" Association="Self.FK_PurchaseOrders_Suppliers">
+      <End Role="Suppliers" EntitySet="Suppliers" />
+      <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesOrderItems_SalesOrders" Association="Self.FK_SalesOrderItems_SalesOrders">
+      <End Role="SalesOrders" EntitySet="SalesOrders" />
+      <End Role="SalesOrderItems" EntitySet="SalesOrderItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

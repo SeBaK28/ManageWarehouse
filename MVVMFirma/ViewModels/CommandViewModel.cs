@@ -10,14 +10,15 @@ namespace MVVMFirma.ViewModels
     {
         #region Properties
         public ICommand Command { get; private set; }
+        public string Icon { get; set; }
         #endregion
 
         #region Constructor
-        public CommandViewModel(string displayName, ICommand command)
+        public CommandViewModel(string icon ,string displayName, ICommand command)
         {
             if (command == null)
                 throw new ArgumentNullException("command");
-
+            this.Icon = icon;
             this.DisplayName = displayName;
             this.Command = command;
         }
