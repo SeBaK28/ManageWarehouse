@@ -91,6 +91,10 @@ namespace MVVMFirma.ViewModels
                     "",
                     "Faktura",
                     new BaseCommand(() => this.CreateView<GetAllInvoiceViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Inwentaryzacja",
+                    new BaseCommand(() => this.CreateView<StocktakingViewModel>())),
             };
         }
         #endregion
