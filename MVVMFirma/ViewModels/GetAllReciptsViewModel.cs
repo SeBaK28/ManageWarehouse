@@ -18,7 +18,7 @@ namespace MVVMFirma.ViewModels
         }
         public GetAllReciptsViewModel() :base()
         {
-            base.DisplayName = "Paragony";
+            base.DisplayName = "Dostawy";
         }
 
     }

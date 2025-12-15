@@ -4,7 +4,7 @@
 winexe
 C#
 .cs
-D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\
+D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x86\Debug\
 MVVMFirma
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\App.xaml
 16-845583123
 2-549614313
-59-2000420491
+581357400046
 181160815892
 Themes\Generic.xaml;Views\GetAllCustomersView.xaml;Views\GetAllInvoiceView.xaml;Views\GetAllLocationsView.xaml;Views\GetAllOrdersIssuesView.xaml;Views\GetAllOrdersView.xaml;Views\GetAllProductsView.xaml;Views\GetAllPurchaseOrderItemsView.xaml;Views\GetAllReceiptsView.xaml;Views\GetAllSalesOrderItemsView.xaml;Views\GetAllSalesOrdersView.xaml;Views\GetAllStocksView.xaml;Views\GetAllSuppliersView.xaml;Views\GetAllWarehousesView.xaml;Views\MainWindow.xaml;Views\MainWindowResources.xaml;
 
-False
+True
 

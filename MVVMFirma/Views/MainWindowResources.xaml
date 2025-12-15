@@ -39,6 +39,9 @@
     <DataTemplate DataType="{x:Type vm:GetAllWarehousesViewModel}">
         <vw:GetAllWarehousesView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:GetAllInvoiceViewModel}">
+        <vw:GetAllInvoiceView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

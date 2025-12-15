@@ -46,3 +46,5 @@ D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\MVVMFir
 D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\MVVMFirma.csproj.Up2Date
 D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\MVVMFirma.exe
 D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\MVVMFirma.pdb
+D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\Views\GetAllInvoiceView.g.cs
+D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\obj\x64\Debug\Views\GetAllInvoiceView.baml

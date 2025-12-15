@@ -117,6 +117,7 @@
     <Compile Include="Models\Customers.cs">
       <DependentUpon>ModelWarehouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\GoodsIssues.cs">
       <DependentUpon>ModelWarehouse.tt</DependentUpon>
     </Compile>
@@ -181,6 +182,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\GetAllCustomersViewModel.cs" />
+    <Compile Include="ViewModels\GetAllInvoiceViewModel.cs" />
     <Compile Include="ViewModels\GetAllLocationsViewModel.cs" />
     <Compile Include="ViewModels\GetAllOrdersIssuesViewModel.cs" />
     <Compile Include="ViewModels\GetAllOrdersViewModel.cs" />
@@ -193,9 +195,13 @@
     <Compile Include="ViewModels\GetAllSuppliersViewModel.cs" />
     <Compile Include="ViewModels\GetAllWarehousesViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\GetAllCustomersView.xaml.cs">
       <DependentUpon>GetAllCustomersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GetAllInvoiceView.xaml.cs">
+      <DependentUpon>GetAllInvoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GetAllLocationsView.xaml.cs">
       <DependentUpon>GetAllLocationsView.xaml</DependentUpon>
@@ -277,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GetAllInvoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GetAllLocationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -345,6 +355,7 @@
       <LastGenOutput>ModelWarehouse.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Sebastian\Programowanie\Studia\MVVM\MVVMFirma\MVVMFirma\App.xaml
-15-386613158
+16-845583123
 2-549614313
-56-1974073403
+60-274977004
 181160815892
-Themes\Generic.xaml;Views\GetAllCustomersView.xaml;Views\GetAllLocationsView.xaml;Views\GetAllOrdersIssuesView.xaml;Views\GetAllOrdersView.xaml;Views\GetAllProductsView.xaml;Views\GetAllPurchaseOrderItemsView.xaml;Views\GetAllReceiptsView.xaml;Views\GetAllSalesOrderItemsView.xaml;Views\GetAllSalesOrdersView.xaml;Views\GetAllStocksView.xaml;Views\GetAllSuppliersView.xaml;Views\GetAllWarehousesView.xaml;Views\MainWindow.xaml;Views\MainWindowResources.xaml;
+Themes\Generic.xaml;Views\GetAllCustomersView.xaml;Views\GetAllInvoiceView.xaml;Views\GetAllLocationsView.xaml;Views\GetAllOrdersIssuesView.xaml;Views\GetAllOrdersView.xaml;Views\GetAllProductsView.xaml;Views\GetAllPurchaseOrderItemsView.xaml;Views\GetAllReceiptsView.xaml;Views\GetAllSalesOrderItemsView.xaml;Views\GetAllSalesOrdersView.xaml;Views\GetAllStocksView.xaml;Views\GetAllSuppliersView.xaml;Views\GetAllWarehousesView.xaml;Views\MainWindow.xaml;Views\MainWindowResources.xaml;
 
-False
+True
 

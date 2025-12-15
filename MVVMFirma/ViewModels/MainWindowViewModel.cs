@@ -9,6 +9,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
 using MVVMFirma.Views;
+using System.ComponentModel.Design;
 
 namespace MVVMFirma.ViewModels
 {
@@ -16,7 +17,8 @@ namespace MVVMFirma.ViewModels
     {
         #region Fields
         private ReadOnlyCollection<CommandViewModel> _Commands;
-        private ObservableCollection<WorkspaceViewModel> _Workspaces;
+        public ObservableCollection<WorkspaceViewModel> _Workspaces;
+        private ReadOnlyCollection<MenuItemViewModel> _MenuItems;
         #endregion
 
         #region Commands
@@ -32,6 +34,7 @@ namespace MVVMFirma.ViewModels
                 return _Commands;
             }
         }
+
         private List<CommandViewModel> CreateCommands()
         {
             return new List<CommandViewModel>
@@ -78,12 +81,16 @@ namespace MVVMFirma.ViewModels
                     new BaseCommand(() => this.CreateView<GetAllSalesOrderItemsViewModel>())),
                 new CommandViewModel(
                     "",
-                    "Paragony",
+                    "Dostawy",
                     new BaseCommand(() => this.CreateView<GetAllReciptsViewModel>())),
                 new CommandViewModel(
                     "",
                     "Problemy",
                     new BaseCommand(() => this.CreateView<GetAllOrdersIssuesViewModel>())),
+                new CommandViewModel(
+                    "",
+                    "Faktura",
+                    new BaseCommand(() => this.CreateView<GetAllInvoiceViewModel>())),
             };
         }
         #endregion
@@ -141,6 +148,33 @@ namespace MVVMFirma.ViewModels
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(this.Workspaces);
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
+        }
+        #endregion
+
+        #region MenuCommands
+
+        public ReadOnlyCollection<MenuItemViewModel> MenuCommand
+        {
+            get
+            {
+                if (_MenuItems == null)
+                {
+                    List<MenuItemViewModel> cmds = this.CreateMenuItem();
+                    _MenuItems = new ReadOnlyCollection<MenuItemViewModel>(cmds);
+                }
+                return _MenuItems;
+            }
+        }
+
+        private List<MenuItemViewModel> CreateMenuItem()
+        {
+            return new List<MenuItemViewModel>
+            {
+                new MenuItemViewModel(
+                    "Faktura",
+                    new BaseCommand(() => this.CreateView<GetAllInvoiceViewModel>())),
+
+            };
         }
         #endregion
     }
