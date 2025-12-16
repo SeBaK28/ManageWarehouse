@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\InwentaryzacjaModel.cs" />
+    <Compile Include="Models\EntitiesForView\PorownanieModel.cs" />
     <Compile Include="Models\GoodsIssues.cs">
       <DependentUpon>ModelWarehouse.tt</DependentUpon>
     </Compile>

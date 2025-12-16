@@ -10,6 +10,12 @@ using ClosedXML.Excel;
 using MVVMFirma.Helper;
 using Microsoft.Win32;
 using MVVMFirma.Models.EntitiesForView;
+using MVVMFirma.Models;
+using System.Data.Entity;
+using MVVMFirma.Views;
+using MVVMFirma.ViewModels.Abstract;
+using System.Reflection.Emit;
+using System.Windows.Controls;
 
 namespace MVVMFirma.ViewModels
 {
@@ -17,6 +23,12 @@ namespace MVVMFirma.ViewModels
     {
 
         public ObservableCollection<InwentaryzacjaModel> Items { get; set; } = new ObservableCollection<InwentaryzacjaModel>();
+        public ObservableCollection<PorownanieModel> Comparison { get; set; } = new ObservableCollection<PorownanieModel>();
+
+        #region String
+        private String connectionString = "data source=DESKTOP-MJK341H\\SQLEXPRESS;initial catalog=WarehouseDb;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
+        #endregion
+
         public ICommand LoadExcelCommand { get; }
 
         public StocktakingViewModel()
@@ -44,12 +56,43 @@ namespace MVVMFirma.ViewModels
                     {
                         Items.Add(new InwentaryzacjaModel
                         {
-                            Nazwa = row.Cell(1).GetValue<string>(),
-                            Wartosc = row.Cell(2).GetValue<int>()
+                            Nazwa = row.Cell(1).GetString().Trim(),
+                            Wartosc = row.Cell(2).GetValue<decimal>()
                         });
                     }
                 }
             }
+
+            CompareWithStock();
+        }
+   
+
+        private void CompareWithStock()
+        {
+            if (Items.Count == 0) return;
+
+            Comparison.Clear();
+
+            using (var _context = new WarehouseDbEntities(connectionString))
+            {
+
+                foreach (var item in Items)
+                {
+
+                    var dbItem = _context.Products.FirstOrDefault(x => x.Name == item.Nazwa);
+                    var element = _context.Stock.FirstOrDefault(x => x.ProductID == dbItem.ProductID);
+
+
+                        Comparison.Add(new PorownanieModel
+                        {
+                            Nazwa = item.Nazwa,
+                            Wartosc = item.Wartosc,
+                            QuantityInStock = element.Quantity,
+                        });
+
+                }
+            }
+
         }
     }
 }

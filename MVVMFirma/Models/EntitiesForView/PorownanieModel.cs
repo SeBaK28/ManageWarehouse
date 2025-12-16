@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MVVMFirma.Models.EntitiesForView
 {
-    public class InwentaryzacjaModel
+    public class PorownanieModel : InwentaryzacjaModel
     {
-        public string Nazwa { get; set; }
-        public decimal Wartosc { get; set; }
+        public decimal? QuantityInStock { get; set; }
+        public decimal? Result => QuantityInStock - Wartosc;
     }
 }

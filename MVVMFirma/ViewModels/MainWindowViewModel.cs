@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using MVVMFirma.Views;
 using System.ComponentModel.Design;
+using MVVMFirma.Models;
 
 namespace MVVMFirma.ViewModels
 {
